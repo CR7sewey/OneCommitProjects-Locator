@@ -15,6 +15,7 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
+import com.google.android.gms.maps.model.LatLng
 import com.mike.locationapp.Location
 import com.mike.locationapp.MVVM_Location
 
@@ -117,9 +118,10 @@ class LocationUtils(val context: Context) {
         // This is a placeholder implementation
         // In a real application, you would use a geocoding library or API to get the address
         val geocoder = Geocoder(context, java.util.Locale.getDefault())
+        val coordinate = LatLng(location.latitude, location.longitude)
             val address: MutableList<Address>? = geocoder.getFromLocation(
-                location.latitude,
-                location.longitude,
+                coordinate.latitude,
+                coordinate.longitude,
                 1
             ) ?: mutableListOf()
         address.let { addresses ->
